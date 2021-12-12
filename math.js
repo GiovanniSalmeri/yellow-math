@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var inlineExpressions = document.querySelectorAll("span.math");
     inlineExpressions.forEach(function(inlineExpression, i) {
         var next = inlineExpression.nextSibling;
-        if (next.nodeType==Node.TEXT_NODE) {
+        if (next && next.nodeType==Node.TEXT_NODE) {
             var parts = next.textContent.match(/^(\S+)(.*)$/);
             if (parts) {
                 next.textContent = parts[2];

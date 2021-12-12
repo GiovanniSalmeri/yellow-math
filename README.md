@@ -4,18 +4,18 @@ Display mathematical expressions.
 
 <p align="center"><img src="math-screenshot.png?raw=true" width="795" height="836" alt="Screenshot"></p>
 
-## How to add mathematical expressions
+## How to add a mathematical expression
+
+You can write mathematical expressions with AsciiMath or Tex. [Asciimath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
 
 Create a `[math]` shortcut.
 
 The following arguments are available, all but the first argument are optional:
 
-`Expression` = mathematical expression; wrap into quotes if there are spaces, use `\rbrack` for unbalanced `]`  
+`Expression` = mathematical expression; wrap into quotes if there are spaces, use `rbrack` for `]`  
 `Markup` (default: `asciimath`) = markup language used: `asciimath` or `tex`  
 
 You can also write a mathematical expressions as a code block in markdown, with the attribute `asciimath` or `tex`.
-
-[Asciimath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
 
 ## Examples
 
@@ -26,11 +26,13 @@ Displaying expressions with a shortcut:
     [math "sum_(i=1)^n i^3=((n(n+1))/2)^2"]
     [math x=\frac{-b\pm\sqrt{b^2-4ac}}{2a} tex]
 
-Displaying expressions with a code block:
+Displaying an expression in AsciiMath with a code block:
 
     ```asciimath
     x=(-b+-sqrt(b^2-4ac))/(2a)
     ```
+
+Displaying an expression in TeX with a code block:
 
     ```tex
     \Re{z} =\frac{n\pi \dfrac{\theta +\psi}{2}}{
@@ -40,9 +42,12 @@ Displaying expressions with a code block:
 
 ## Settings
 
-The following settings can be configured in file `system/extensions/yellow-system.ini`:
+The following setting can be configured in file `system/extensions/yellow-system.ini`:
 
 `MathDecimal` (default = `.`) = decimal separator  
+
+The following setting can be configured at [the top of a page](https://github.com/datenstrom/yellow-extensions/tree/master/source/core#settings):
+
 `MathPlainCode` (default = `none`) = parse as mathematical expression also inline code enclosed in `` ` ``; possible values `asciimath`, `tex`  
 
 ## Installation

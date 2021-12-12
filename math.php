@@ -9,6 +9,7 @@ class YellowMath {
     public function onLoad($yellow) {
         $this->yellow = $yellow;
         $this->yellow->system->setDefault("mathDecimal", ".");
+        $this->yellow->system->setDefault("mathPlainCode", "none");
         $this->mathParser = new AsciiMathParser($this->yellow->system->get("mathDecimal"));
     }
     
@@ -30,14 +31,20 @@ class YellowMath {
     // Handle page content
     public function onParseContentHtml($page, $text) {
         $callback = function($matches) {
-            $matches[2] = htmlspecialchars_decode($matches[2]);
-            if ($matches[1]=="tex") {
-                $content = $matches[2];
-            } elseif ($matches[1]=="asciimath") {
-                $content = $this->mathParser->parse($matches[2]);
+            if ($matches[1]=="") {
+                $parser = $this->yellow->system->get("mathPlainCode");
+                $tag = "span";
+            } else {
+                $parser = $matches[1];
+                $tag = "div";
             }
-            return "<div class=\"math\">\n".htmlspecialchars($content)."\n</div>";
+            $matches[2] = htmlspecialchars_decode($matches[2]);
+            $content = $parser=="asciimath" ? $this->mathParser->parse($matches[2]) : $matches[2];
+            return "<$tag class=\"math\">\n".htmlspecialchars($content)."\n</$tag>";
         };
+        if (in_array($this->yellow->system->get("mathPlainCode"), ["asciimath", "tex"])) {
+            $text = preg_replace_callback('/<code>()(.*?)<\/code>/s', $callback, $text);
+        }
         return preg_replace_callback('/<pre class="(asciimath|tex)"><code>(.*?)<\/code><\/pre>/s', $callback, $text);
     }
 

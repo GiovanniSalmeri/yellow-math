@@ -43,6 +43,7 @@ Displaying expressions with a code block:
 The following setting can be configured in file `system/extensions/yellow-system.ini`:
 
 `MathDecimal` (default = `.`) = decimal separator  
+`MathPlainCode` (default = `none`) = parse as mathematical expression also inline code enclosed in `` ` ``; possible values `asciimath`, `tex`  
 
 ## Installation
 

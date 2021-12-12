@@ -6,7 +6,7 @@ Display mathematical expressions.
 
 ## How to add a mathematical expression
 
-You can write mathematical expressions with AsciiMath or Tex. [Asciimath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
+You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
 
 Create a `[math]` shortcut.
 

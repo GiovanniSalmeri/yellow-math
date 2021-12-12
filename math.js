@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var next = inlineExpression.nextSibling;
         if (next.nodeType==Node.TEXT_NODE) {
             var parts = next.textContent.match(/^(\S+)(.*)$/);
-            if (parts && parts[1].length>0) {
+            if (parts) {
                 next.textContent = parts[2];
                 var span = document.createElement("SPAN");
                 span.style.whiteSpace = "nowrap";

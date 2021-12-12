@@ -15,11 +15,10 @@ class YellowMath {
     // Handle page content of shortcut
     public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
-        if ($name=="math" && ($type=="block" || $type=="inline")) {
-            list($expression, $parser) = $this->yellow->toolbox->getTextArguments($text);
-            $classes = [];
+        if (($name=="math" || $name=="mathtex") && ($type=="block" || $type=="inline")) {
+            list($expression) = $this->yellow->toolbox->getTextArguments($text);
             $tag = $type=="inline" ? "span" : "div";
-            $content = $parser=="tex" ? $expression : $this->mathParser->parse($expression);
+            $content = $name=="mathtex" ? $expression : $this->mathParser->parse($expression);
             $output .= "<$tag class=\"math\">";
             $output .= htmlspecialchars($content);
             $output .= "</$tag>"; // no final \n!
@@ -38,13 +37,13 @@ class YellowMath {
                 $tag = "div";
             }
             $matches[2] = htmlspecialchars_decode($matches[2]);
-            $content = $parser=="asciimath" ? $this->mathParser->parse($matches[2]) : $matches[2];
+            $content = $parser=="math" ? $this->mathParser->parse($matches[2]) : $matches[2];
             return "<$tag class=\"math\">".htmlspecialchars($content)."</$tag>";
         };
-        if (in_array($this->yellow->page->get("mathPlainCode"), ["asciimath", "tex"])) {
+        if (in_array($this->yellow->page->get("mathPlainCode"), ["math", "mathtex"])) {
             $text = preg_replace_callback('/<code>()(.*?)<\/code>/s', $callback, $text);
         }
-        return preg_replace_callback('/<pre class="(asciimath|tex)"><code>(.*?)<\/code><\/pre>/s', $callback, $text);
+        return preg_replace_callback('/<pre class="(math|mathtex)"><code>(.*?)<\/code><\/pre>/s', $callback, $text);
     }
 
     // Handle page extra data

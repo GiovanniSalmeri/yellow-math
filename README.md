@@ -10,7 +10,7 @@ Create a `[math]` shortcut.
 
 The following arguments are available, all but the first argument are optional:
 
-`Expression` = mathematical expression; wrap into quotes if there are spaces  
+`Expression` = mathematical expression; wrap into quotes if there are spaces, use `\rbrack` for unbalanced `]`  
 `Markup` (default: `asciimath`) = markup language used: `asciimath` or `tex`  
 
 You can also write a mathematical expressions as a code block in markdown, with the attribute `asciimath` or `tex`.

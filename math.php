@@ -914,6 +914,9 @@ class AsciiMathParser {
             'asciimath'=>"[",
             'tex'=>"["
         ], [
+            'asciimath'=>"lbrack", // added for Yellow shortcuts
+            'tex'=>"["
+        ], [
             'asciimath'=>"{",
             'tex'=>"\\lbrace"
         ], [
@@ -938,6 +941,9 @@ class AsciiMathParser {
             'tex'=>")"
         ], [
             'asciimath'=>"]",
+            'tex'=>"]"
+        ], [
+            'asciimath'=>"rbrack",  // added for Yellow shortcuts
             'tex'=>"]"
         ], [
             'asciimath'=>"}",

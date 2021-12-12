@@ -40,7 +40,7 @@ class YellowMath {
             }
             $matches[2] = htmlspecialchars_decode($matches[2]);
             $content = $parser=="asciimath" ? $this->mathParser->parse($matches[2]) : $matches[2];
-            return "<$tag class=\"math\">\n".htmlspecialchars($content)."\n</$tag>";
+            return "<$tag class=\"math\">".htmlspecialchars($content)."</$tag>";
         };
         if (in_array($this->yellow->system->get("mathPlainCode"), ["asciimath", "tex"])) {
             $text = preg_replace_callback('/<code>()(.*?)<\/code>/s', $callback, $text);

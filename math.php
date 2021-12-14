@@ -29,7 +29,7 @@ class YellowMath {
     // Handle page content
     public function onParseContentHtml($page, $text) {
         $callback = function($matches) {
-            if ($matches[1]=="") {
+            if ($matches[1]=="") { // undocumented
                 $parser = $this->yellow->page->get("mathPlainCode");
                 $tag = "span";
             } else {
@@ -41,6 +41,7 @@ class YellowMath {
             return "<$tag class=\"math\">".htmlspecialchars($content)."</$tag>";
         };
         if (in_array($this->yellow->page->get("mathPlainCode"), ["math", "mathtex"])) {
+            // undocumented
             $text = preg_replace_callback('/<code>()(.*?)<\/code>/s', $callback, $text);
         }
         return preg_replace_callback('/<pre class="(math|mathtex)"><code>(.*?)<\/code><\/pre>/s', $callback, $text);

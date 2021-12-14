@@ -45,10 +45,6 @@ The following setting can be configured in file `system/extensions/yellow-system
 
 `MathDecimal` (default = `.`) = decimal separator  
 
-The following setting can be configured at [the top of a page](https://github.com/datenstrom/yellow-extensions/tree/master/source/core#settings):
-
-`MathPlainCode` (default = `none`) = parse as mathematical expression also inline code enclosed in `` ` ``; possible values `math`, `tex`  
-
 ## Installation
 
 [Download extension](https://github.com/GiovanniSalmeri/yellow-math/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.

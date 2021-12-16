@@ -52,8 +52,8 @@ class YellowMath {
         $output = null;
         if ($name=="header") {
             $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
-            $output .= "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css\" integrity=\"sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs\" crossorigin=\"anonymous\">\n";
-            $output .= "<script defer src=\"https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js\" integrity=\"sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx\" crossorigin=\"anonymous\"></script>\n";
+            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}math-katex.min.css\" />\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}math-katex.min.js\"></script>\n";
             $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}math.js\"></script>\n";
         }
         return $output;

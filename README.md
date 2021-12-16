@@ -51,7 +51,7 @@ The following setting can be configured in file `system/extensions/yellow-system
 
 This extension requires PHP >= 7.0.
 
-This extension uses a class derived from [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX, and [KaTeX](https://katex.org/) by Emily Eisenberg, Sophie Alpert and other for displaying the expressions.
+This extension uses a class derived from [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX, and [KaTeX 0.15.1](https://katex.org/) by Emily Eisenberg, Sophie Alpert and other for displaying the expressions.
 
 ## Developer
 

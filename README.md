@@ -49,8 +49,6 @@ The following setting can be configured in file `system/extensions/yellow-system
 
 [Download extension](https://github.com/GiovanniSalmeri/yellow-math/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
 
-This extension requires PHP >= 7.0.
-
 This extension uses a class derived from [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX, and [KaTeX 0.15.1](https://katex.org/) by Emily Eisenberg, Sophie Alpert and other for displaying the expressions.
 
 ## Developer

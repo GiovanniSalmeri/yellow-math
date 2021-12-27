@@ -1277,7 +1277,7 @@ class AsciiMathParser {
     private function sort_symbols() {
         $by_asciimath = function($a, $b) {
             $a = strlen($a['asciimath']); $b = strlen($b['asciimath']);
-            return $b <=> $a; // spaceship
+            return $b - $a; // return $b <=> $a; // spaceship
         };
 
         usort($this->constants, $by_asciimath);
@@ -1303,10 +1303,10 @@ class AsciiMathParser {
     private function longest($matches) {
         //$matches = array_filter($matches, function($x) { return (bool)$x; });
         usort($matches, function($x, $y) {
-                $x = $x['end'];
-                $y = $y['end'];
-                return $y <=> $x;
-                });
+            $x = $x['end'];
+            $y = $y['end'];
+            return $y - $x; // return $y <=> $x;
+        });
         return $matches[0];
     }
 
@@ -1351,8 +1351,8 @@ class AsciiMathParser {
         $middle = $tok['middle'] ? $tok['middle']['tex'] : '';
 
         if ($left || $right) {
-            $left = $left ?? '.';
-            $right = $right ?? '.';
+            $left = empty($left) ? '.' : $left; // $left = $left ?? '.';
+            $right = empty($right) ? '.' : $right; // $right = $right ?? '.';
 
             return [
                 'tex'=>"\\left {$left} {$middle} \\right {$right}", // interpolation
@@ -1922,7 +1922,7 @@ class AsciiMathParser {
             $middle = $this->expression_list($l['end']);
 
             if ($middle) {
-                $r = $this->right_bracket($middle['end']) ?? $this->leftright_bracket($middle['end'], 'right');
+                $r = empty($this->right_bracket($middle['end'])) ? $this->leftright_bracket($middle['end'], 'right') : $this->right_bracket($middle['end']); // $r = $this->right_bracket($middle['end']) ?? $this->leftright_bracket($middle['end'], 'right');
                 if ($r) {
                     return [
                         'tex'=>"\\left{$l['tex']} {$middle['tex']} \\right {$r['tex']}", // interpolation
@@ -1954,7 +1954,7 @@ class AsciiMathParser {
                     ];
                 }
             } else {
-                $r = $this->right_bracket($l['end']) ?? $this->leftright_bracket($l['end'], 'right');
+                $r = empty($this->right_bracket($l['end'])) ? $this->leftright_bracket($l['end'], 'right') : $this->right_bracket($l['end']); // $r = $this->right_bracket($l['end']) ?? $this->leftright_bracket($l['end'], 'right');
                 if ($r) {
                     return [
                         'tex'=>"\\left {$l['tex']} \\right {$r['tex']}", // interpolation
@@ -1987,7 +1987,7 @@ class AsciiMathParser {
             $middle = $this->expression_list($left['end']);
 
             if ($middle) {
-                $right = $this->leftright_bracket($middle['end'], 'right') ?? $this->right_bracket($middle['end']);
+                $right = empty($this->leftright_bracket($middle['end'], 'right')) ? $this->right_bracket($middle['end']) : $this->leftright_bracket($middle['end'], 'right'); // $right = $this->leftright_bracket($middle['end'], 'right') ?? $this->right_bracket($middle['end']);
                 if ($right) {
                     return [
                         'tex'=>"\\left {$left['tex']} {$middle['tex']} \\right {$right['tex']}", // interpolation

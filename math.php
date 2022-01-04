@@ -275,14 +275,16 @@ class AsciiMathParser {
         $this->sort_symbols();
     }
 
+
     private function setup_symbols() {
         $this->greek_letters = ['alpha', 'beta', 'gamma', 'Gamma', 'delta', 'Delta', 'epsilon', 'varepsilon', 'zeta', 'eta', 'theta', 'Theta', 'vartheta', 'iota', 'kappa', 'lambda', 'Lambda', 'mu', 'nu', 'xi', 'Xi', 'pi', 'Pi', 'rho', 'sigma', 'Sigma', 'tau', 'upsilon', 'phi', 'Phi', 'varphi', 'chi', 'psi', 'Psi', 'omega', 'Omega'];
+        // the `|:` and `:|` symbols are defined for left and right vertical delimiters
         $this->relations = [[
             'asciimath'=>":=",
             'tex'=>":="
         ], [
             'asciimath'=>":|:",
-            'tex'=>"\\|"
+            'tex'=>"\\mid"
         ], [
             'asciimath'=>"=>",
             'tex'=>"\\Rightarrow"
@@ -923,6 +925,9 @@ class AsciiMathParser {
             'asciimath'=>"lbrack", // added for Yellow shortcuts
             'tex'=>"["
         ], [
+            'asciimath'=>"|:",
+            'tex'=>"\\lvert"
+        ], [
             'asciimath'=>"{",
             'tex'=>"\\lbrace"
         ], [
@@ -952,6 +957,9 @@ class AsciiMathParser {
             'asciimath'=>"rbrack",  // added for Yellow shortcuts
             'tex'=>"]"
         ], [
+            'asciimath'=>":|",
+            'tex'=>"\\rvert"
+        ], [
             'asciimath'=>"}",
             'tex'=>"\\rbrace"
         ], [
@@ -962,7 +970,8 @@ class AsciiMathParser {
                 'asciimath'=>"|",
                 'left_tex'=>"\\lvert",
                 'right_tex'=>"\\rvert",
-                'free_tex'=>"|"
+                'free_tex'=>"|",
+                'mid_tex'=>"\\mid"
         ]];
         $this->unary_symbols = [[
                 'asciimath'=>"sqrt",
@@ -1438,7 +1447,7 @@ class AsciiMathParser {
 
     private function strip_space($pos = 0) {
         $osource = $this->source($pos);
-        $reduced = preg_replace('/^(\\s|\\\\(?!\\\\|\s))*/', '', $osource); // added |\s
+        $reduced = preg_replace('/^(\\s|\\\\(?![\\\\ ]))*/', '', $osource); // added whitespace
         return $pos + strlen($osource) - strlen($reduced);
     }
     /* Does the given regex match next?
@@ -1608,7 +1617,9 @@ class AsciiMathParser {
                     'end'=>$second['end'],
                     'ttype'=>"fraction",
                     'numerator'=>$ufirst,
-                    'denominator'=>$usecond
+                    'denominator'=>$usecond,
+                    'raw_numerator'=>$first,
+                    'raw_denominator'=>$second
                 ];
             } else {
                 $ufirst = $this->unbracket($first);
@@ -1618,7 +1629,9 @@ class AsciiMathParser {
                     'end'=>$frac['end'],
                     'ttype'=>"fraction",
                     'numerator'=>$ufirst,
-                    'denominator'=>null
+                    'denominator'=>null,
+                    'raw_numerator'=>$first,
+                    'raw_denominator'=>null
                 ];
             }
         } else {
@@ -1920,12 +1933,15 @@ class AsciiMathParser {
 
         if ($l) {
             $middle = $this->expression_list($l['end']);
-
             if ($middle) {
+                $m = $this->mid_expression($l, $middle, $pos);
+                if ($m) {
+                    return $m;
+                }
                 $r = empty($this->right_bracket($middle['end'])) ? $this->leftright_bracket($middle['end'], 'right') : $this->right_bracket($middle['end']); // $r = $this->right_bracket($middle['end']) ?? $this->leftright_bracket($middle['end'], 'right');
                 if ($r) {
                     return [
-                        'tex'=>"\\left{$l['tex']} {$middle['tex']} \\right {$r['tex']}", // interpolation
+                        'tex'=>"\\left {$l['tex']} {$middle['tex']} \\right {$r['tex']}", // interpolation
                         'pos'=>$pos,
                         'end'=>$r['end'],
                         'bracket'=>true,
@@ -1936,7 +1952,7 @@ class AsciiMathParser {
                     ];
                 } else if ($this->eof($middle['end'])) {
                     return [
-                        'tex'=>"\\left{$l['tex']} {$middle['tex']} \\right.", // interpolation
+                        'tex'=>"\\left {$l['tex']} {$middle['tex']} \\right.", // interpolation
                         'pos'=>$pos,
                         'end'=>$middle['end'],
                         'ttype'=>"bracket",
@@ -1987,6 +2003,10 @@ class AsciiMathParser {
             $middle = $this->expression_list($left['end']);
 
             if ($middle) {
+                $m = $this->mid_expression($left, $middle, $pos);
+                if($m) {
+                    return $m;
+                }
                 $right = empty($this->leftright_bracket($middle['end'], 'right')) ? $this->right_bracket($middle['end']) : $this->leftright_bracket($middle['end'], 'right'); // $right = $this->leftright_bracket($middle['end'], 'right') ?? $this->right_bracket($middle['end']);
                 if ($right) {
                     return [
@@ -2004,6 +2024,52 @@ class AsciiMathParser {
         }
     } // $r ::= ) | ] | } | :) | :} | other $right brackets
 
+
+    private function mid_expression($l, $middle, $pos) {
+        $is_mid_bracket = function($t) {
+            return isset($t['ttype']) && $t['ttype']=='bracket' && isset($t['left']['ttype']) && $t['left']['ttype']=='leftright_bracket'; // added 2 isset
+        };
+        if(count($middle['exprs'])==1 && $middle['exprs'][0]['ttype']=='expression') {
+            $firsts = [ $middle['exprs'][0]['exprs'][0] ];
+            $last = $middle['exprs'][0]['exprs'][1];
+            $end = $middle['end'];
+            while ($last['ttype']=='expression') {
+                $first = $last['exprs'][0];
+                if ($is_mid_bracket($first)) {
+                    $last = $first;
+                    $end = $first['end'];
+                    break;
+                }
+                $firsts[] = $last['exprs'][0];
+                $last = $last['exprs'][1];
+            }
+            if ($last['ttype']=='fraction') {
+                $last = $last['raw_numerator'];
+                $end = $last['end'];
+            }
+            if(!($last['ttype']=='bracket' && $last['left']['ttype']=='leftright_bracket')) {
+                return;
+            }
+            $firsttex = implode(" ", array_map(function($e) { return $e['tex']; }, $firsts));
+            $mid = $last['left'];
+            $lasttex = implode(" ", array_map(function($e) { return $e['tex']; }, $last['middle']['exprs']));
+            $nr = $last['right'];
+            return [
+                'tex'=>"\\left {$l['tex']} {$firsttex} {$mid['def']['mid_tex']} {$lasttex} \\right {$nr['tex']}", // interpolation
+                'pos'=> $pos,
+                'end'=> $end,
+                'left'=> $l,
+                'right'=> $nr,
+                'middle'=> [
+                    'tex'=> "{$firsttex} {$mid['def']['mid_tex']} {$lasttex}", // interpolation
+                    'exprs'=> array_merge($firsts, [ $mid, $last['middle'] ]),
+                    'pos'=> $middle['pos'],
+                    'end'=> $last['middle']['end'],
+                    'ttype'=> 'expression_list'
+                ]
+            ];
+        }
+    }
 
     private function right_bracket($pos = 0) {
         foreach ($this->right_brackets as $bracket) {
@@ -2044,12 +2110,22 @@ class AsciiMathParser {
             $b = $this->exact($lr['asciimath'], $pos);
     
             if ($b) {
-                return [
-                    'tex'=>$position == 'left' ? $lr['left_tex'] : ($position == 'right' ? $lr['right_tex'] : $lr['free_tex']),
-                    'pos'=>$pos,
-                    'end'=>$b['end'],
-                    'ttype'=>"leftright_bracket"
-                ];
+                if ($this->exact(',', $b['end'])) {
+                    return [
+                        'tex'=>$lr['free_tex'],
+                        'pos'=>$pos,
+                        'end'=>$b['end'],
+                        'ttype'=>'binary'
+                    ];
+                } else {
+                    return [
+                        'tex'=>$position == 'left' ? $lr['left_tex'] : ($position == 'right' ? $lr['right_tex'] : $lr['free_tex']),
+                        'pos'=>$pos,
+                        'end'=>$b['end'],
+                        'ttype'=>"leftright_bracket",
+                        'def'=>$lr
+                    ];
+                }
             }
         }
     }

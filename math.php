@@ -2027,7 +2027,7 @@ class AsciiMathParser {
 
     private function mid_expression($l, $middle, $pos) {
         $is_mid_bracket = function($t) {
-            return isset($t['ttype']) && $t['ttype']=='bracket' && isset($t['left']['ttype']) && $t['left']['ttype']=='leftright_bracket'; // added 2 isset
+            return isset($t['ttype']) && $t['ttype']=='bracket' && $t['left']['ttype']=='leftright_bracket'; // added isset
         };
         if(count($middle['exprs'])==1 && $middle['exprs'][0]['ttype']=='expression') {
             $firsts = [ $middle['exprs'][0]['exprs'][0] ];

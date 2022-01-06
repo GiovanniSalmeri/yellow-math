@@ -1,3 +1,5 @@
+// Math extension, https://github.com/GiovanniSalmeri/yellow-math
+
 "use strict";
 document.addEventListener("DOMContentLoaded", function() {
     // Prevent line break between inline math and subsequent chars (e.g. punctuation)

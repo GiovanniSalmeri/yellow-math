@@ -8,8 +8,7 @@ class YellowMath {
     // Handle initialisation
     public function onLoad($yellow) {
         $this->yellow = $yellow;
-        $this->yellow->system->setDefault("mathDecimal", ".");
-        $this->mathParser = new AsciiMathParser($this->yellow->system->get("mathDecimal"));
+        $this->mathParser = new AsciiMathParser($this->yellow->language->getText("coreDecimalSeparator"));
     }
     
     // Handle page content of shortcut

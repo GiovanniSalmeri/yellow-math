@@ -39,12 +39,6 @@ Displaying an expression in TeX with a code block:
     \log \left\lvert\dfrac{B}{A}\right\rvert\right)^2}.
     ```
 
-## Settings
-
-The following setting can be configured in file `system/extensions/yellow-system.ini`:
-
-`MathDecimal` (default = `.`) = decimal separator  
-
 ## Installation
 
 [Download extension](https://github.com/GiovanniSalmeri/yellow-math/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.

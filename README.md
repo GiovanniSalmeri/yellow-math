@@ -4,7 +4,7 @@ Display mathematical expressions.
 
 <p align="center"><img src="math-screenshot.png?raw=true" width="795" height="836" alt="Screenshot"></p>
 
-## How to add a mathematical expression
+## How to show a mathematical expression
 
 You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
 
@@ -18,20 +18,20 @@ You can also write a mathematical expressions as a code block in markdown, with 
 
 ## Examples
 
-Displaying expressions with a shortcut:
+Showing expressions with a shortcut:
 
     [math pi=3.1415926]
     [math x=(-b+-sqrt(b^2-4ac))/(2a)]
     [math "sum_(i=1)^n i^3=((n(n+1))/2)^2"]
     [mathtex x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
 
-Displaying an expression in AsciiMath with a code block:
+Showing an expression in AsciiMath with a code block:
 
     ```math
     x=(-b+-sqrt(b^2-4ac))/(2a)
     ```
 
-Displaying an expression in TeX with a code block:
+Showing an expression in TeX with a code block:
 
     ```mathtex
     \Re{z} =\frac{n\pi \dfrac{\theta +\psi}{2}}{

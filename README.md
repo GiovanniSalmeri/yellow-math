@@ -47,4 +47,4 @@ This extension uses a class derived from [asciimath2tex](https://github.com/chri
 
 ## Developer
 
-Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/).
+Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/)

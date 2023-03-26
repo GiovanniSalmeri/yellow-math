@@ -14,7 +14,7 @@ You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http:/
 
 The first option is to write a mathematical expression with a shortcut. Create a `[math]` shortcut for AsciiMath or a `[mathtex]` shortcut for TeX/LaTeX. Wrap the whole expression into quotes if there are spaces, use `rbrack` instead of `]`.
 
-The second option is to write a mathematical expressions in a code block and add the identifier `math` or `mathtex`.
+The second option is to write a mathematical expressions in a code block. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
 
 ## Examples
 

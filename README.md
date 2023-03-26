@@ -14,7 +14,7 @@ You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http:/
 
 The first option is to write a mathematical expression with a shortcut. Create a `[math]` shortcut for AsciiMath or a `[mathtex]` shortcut for TeX/LaTeX. Wrap the whole expression into quotes if there are spaces, use `rbrack` instead of `]`.
 
-The second option is to write a mathematical expressions in a code block. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
+The second option is to write a mathematical expressions with a code block. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
 
 ## Examples
 
@@ -44,7 +44,7 @@ Showing an expression in TeX/LaTeX with a code block:
 
 ## Acknowledgements
 
-This extension uses [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX. It uses [KaTeX 0.15.1](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other for displaying mathematical expressions. Thank you for the good work.
+This extension uses [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for converting AsciiMath to TeX. It uses [KaTeX 0.15.1](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other for displaying mathematical expressions. Thank you for the good work.
 
 ## Developer
 

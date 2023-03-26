@@ -44,7 +44,7 @@ Showing an expression in TeX/LaTeX with a code block:
 
 ## Acknowledgements
 
-This extension uses [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX. It uses [KaTeX 0.15.1](https://katex.org/) by Emily Eisenberg, Sophie Alpert and other for displaying mathematical expressions. Thank you for the good work.
+This extension uses [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for translating ASCIImath in TeX. It uses [KaTeX 0.15.1](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other for displaying mathematical expressions. Thank you for the good work.
 
 ## Developer
 

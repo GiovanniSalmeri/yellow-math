@@ -48,4 +48,4 @@ This extension is based on the original [asciimath2tex](https://github.com/chris
 
 ## Developer
 
-Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/)
+Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/).

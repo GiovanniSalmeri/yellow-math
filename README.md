@@ -1,6 +1,6 @@
 Math 0.8.18
 ===========
-Display mathematical expressions.
+Mathematical expressions.
 
 <p align="center"><img src="math-screenshot.png?raw=true" alt="Screenshot"></p>
 
@@ -10,31 +10,31 @@ Display mathematical expressions.
 
 ## How to show a mathematical expression
 
-You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http://asciimath.org/) is a very simple mathematical markup language similar to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
+You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http://asciimath.org/) is a very simple mathematical markup language, analogous to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
 
 The first option is to write a mathematical expression with a shortcut. Create a `[math]` shortcut for AsciiMath or a `[mathtex]` shortcut for TeX/LaTeX. Wrap the whole expression in quotes if there are spaces, use `rbrack` instead of `]`.
 
-The second option is to write a mathematical expressions with a code block. Wrap the whole expression in \`\`\`. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
+The second option is to write a mathematical expression with a code block. Wrap the whole expression in \`\`\`. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
 
 ## Examples
 
-Showing an expression in AsciiMath with a shortcut:
+An expression in AsciiMath with a shortcut:
 
     [math pi=3.1415926]
     [math x=(-b+-sqrt(b^2-4ac))/(2a)]
     [math "sum_(i=1)^n i^3=((n(n+1))/2)^2"]
 
-Showing an expression in TeX/LaTeX with a shortcut:
+An expression in TeX/LaTeX with a shortcut:
 
     [mathtex x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
 
-Showing an expression in AsciiMath with a code block:
+An expression in AsciiMath with a code block:
 
     ``` math
     x=(-b+-sqrt(b^2-4ac))/(2a)
     ```
 
-Showing an expression in TeX/LaTeX with a code block:
+An expression in TeX/LaTeX with a code block:
 
     ``` mathtex
     \Re{z} =\frac{n\pi \dfrac{\theta +\psi}{2}}{

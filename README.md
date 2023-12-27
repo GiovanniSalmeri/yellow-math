@@ -2,7 +2,7 @@ Math 0.8.18
 ===========
 Mathematical expressions.
 
-<p align="center"><img src="SCREENSHOT.png?raw=true" alt="Screenshot"></p>
+<p align="center"><img src="SCREENSHOT.png" alt="Screenshot"></p>
 
 ## How to install an extension
 

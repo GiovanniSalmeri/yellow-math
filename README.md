@@ -1,5 +1,5 @@
-Math 0.8.18
-===========
+# Math 0.9.1
+
 Mathematical expressions.
 
 <p align="center"><img src="SCREENSHOT.png" alt="Screenshot"></p>

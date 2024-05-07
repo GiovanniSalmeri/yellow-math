@@ -1,6 +1,6 @@
-# Math 0.9.1
+# Math 0.9.2
 
-Mathematical expressions.
+Mathematical expressions with TeX/LaTeX.
 
 <p align="center"><img src="SCREENSHOT.png" alt="Screenshot"></p>
 
@@ -10,33 +10,23 @@ Mathematical expressions.
 
 ## How to show a mathematical expression
 
-You can write mathematical expressions with AsciiMath or Tex. [AsciiMath](http://asciimath.org/) is a very simple mathematical markup language, analogous to Markdown. [TeX and LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) are rich and specialised systems for writing mathematics.
+With this extension you can write mathematical expressions with Tex/LaTeX. [TeX/LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) is a rich and specialised system for writing mathematics. [KaTeX](https://katex.org/docs/supported.html) is used for rendering the expressions.
 
-The first option is to write a mathematical expression with a shortcut. Create a `[math]` shortcut for AsciiMath or a `[mathtex]` shortcut for TeX/LaTeX. Wrap the whole expression in quotes if there are spaces, use `rbrack` instead of `]`.
+The first option is to write a mathematical expression with a shortcut. Create a `[math]` shortcut. Wrap the whole expression in quotes if there are spaces or quotes. Inside the expression use `%|` instead of `]`, and `""` instead of `"`.
 
-The second option is to write a mathematical expression with a code block. Wrap the whole expression in \`\`\`. Add the language identifier `math` for AsciiMath or `mathtex` for TeX/LaTeX.
+The second option is to write a mathematical expression with a code block. Wrap the whole expression in `` ``` `` and add the identifier `math`.
+
+The extension will automatically care for the differences between inline and display expressions.
 
 ## Examples
 
-An expression in AsciiMath with a shortcut:
+An expression with a shortcut:
 
-    [math pi=3.1415926]
-    [math x=(-b+-sqrt(b^2-4ac))/(2a)]
-    [math "sum_(i=1)^n i^3=((n(n+1))/2)^2"]
+    [math x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
 
-An expression in TeX/LaTeX with a shortcut:
-
-    [mathtex x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
-
-An expression in AsciiMath with a code block:
+An expression with a code block:
 
     ``` math
-    x=(-b+-sqrt(b^2-4ac))/(2a)
-    ```
-
-An expression in TeX/LaTeX with a code block:
-
-    ``` mathtex
     \Re{z} =\frac{n\pi \dfrac{\theta +\psi}{2}}{
     \left(\dfrac{\theta +\psi}{2}\right)^2 + \left( \dfrac{1}{2}
     \log \left\lvert\dfrac{B}{A}\right\rvert\right)^2}.
@@ -44,7 +34,7 @@ An expression in TeX/LaTeX with a code block:
 
 ## Acknowledgements
 
-This extension is based on the original [asciimath2tex](https://github.com/christianp/asciimath2tex) by Christian Lawson-Perfect for converting AsciiMath to TeX. The extension includes [KaTeX 0.15.1](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other for displaying mathematical expressions. Thank you for the good work.
+The extension includes [KaTeX 0.16.10](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other. Thank you for the good work.
 
 ## Developer
 

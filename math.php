@@ -10,6 +10,7 @@ class YellowMath {
         $this->yellow = $yellow;
     }
 
+    // Handle page content element
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="math" && ($type=="block" || $type=="inline" || $type=="code")) {

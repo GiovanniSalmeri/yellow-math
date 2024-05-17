@@ -16,8 +16,6 @@ The first option is to write a mathematical expression with a shortcut. Create a
 
 The second option is to write a mathematical expression with a code block. Wrap the whole expression in `` ``` `` and add the identifier `math`.
 
-The extension will automatically care for the differences between inline and display expressions.
-
 ## Examples
 
 An expression with a shortcut:

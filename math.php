@@ -15,7 +15,7 @@ class YellowMath {
         $output = null;
         if ($name=="math" && ($type=="block" || $type=="inline" || $type=="code")) {
             list($expression) = $type=="code" ? [ $text ] : $this->yellow->toolbox->getTextArguments($text);
-            $expression = str_replace([ "%%", "%|" ], [ "%", "]" ], $expression);
+            $expression = strtr($expression, [ "%%"=>"%", "%|"=>"]" ]);
             $tag = $type=="inline" ? "span" : "div";
             $output = "<$tag class=\"math\">".htmlspecialchars($expression)."</$tag>";
         }

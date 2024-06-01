@@ -1,0 +1,43 @@
+/* Math extension, https://github.com/GiovanniSalmeri/yellow-math */
+
+:root {
+    --math-left-align: 0; /* 0 or 1 */
+    --math-label-left-align: 0; /* 0 or 1 */
+    --math-font-size: 1em;
+    --math-label-left-delimiter: "(";
+    --math-label-right-delimiter: ")";
+}
+span.katex {
+    font-size: var(--math-font-size);
+}
+div.math-display, span.math-display { 
+    position: relative;
+}
+div.math-display span.math-label {
+    position: absolute;
+    right: var(--math-label-left-align);
+    top: calc(50% - 1em);
+}
+div.math-display:target::before, span.math-display:target::before {
+    content: "";
+    position: absolute;
+    top: -0.5em;
+    left: -0.5em;
+    width: calc(100% + 1em);
+    height: calc(100% + 1em);
+    background-color: #FFFFAA;
+    border-radius: 3px;
+    z-index: -1;
+    animation: highlight 1s ease-in 1s forwards;
+}
+@keyframes highlight {
+    to {
+        background-color: inherit;
+    }
+}
+div.math-display span.math-label::before, span.math-display span.math-label::before, a.math-label::before {
+    content: var(--math-label-left-delimiter);
+}
+div.math-display span.math-label::after, span.math-display span.math-label::after, a.math-label::after {
+    content: var(--math-label-right-delimiter);
+}

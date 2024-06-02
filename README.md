@@ -22,8 +22,6 @@ Write the expression with a code block and add after the identifier a label pref
 
 To refer to an expression, use the label prefixed by `#` and wrapped in brackets `[]`.
 
-When using this method, avoid LaTeX's automatic numbering (e.g. use `gather*`, `align*`, `alignat*` instead of `gather`, `align`, `alignat`; `equation*` can be simply omitted).
-
 ## Examples
 
 An expression using a shortcut:

@@ -1,8 +1,8 @@
-# Math 0.9.3
+# Math 1.0.0
 
-Mathematical expressions with TeX/LaTeX.
+Mathematical expressions with TeX/LaTeX. Developed by Giovanni Salmeri.
 
-<p align="center"><img src="SCREENSHOT.png" alt="Screenshot"></p>
+<p align="center"><img src="screenshot.png" alt="Screenshot"></p>
 
 ## How to install an extension
 
@@ -105,8 +105,6 @@ More examples:
 
 ## Acknowledgements
 
-The extension includes [KaTeX 0.16.10](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other. Thank you for the good work. Most examples come from [Writing Mathematics in LaTeX by Example](https://euclid.colorado.edu/~hilljb/latex/intro.to.latex.pdf) by Jason B. Hill. Thank you for the helpful tutorial.
+The extension includes [KaTeX 0.16.10](https://github.com/KaTeX/KaTeX) by Emily Eisenberg, Sophie Alpert and other.  Thank you for the useful library. Most examples come from [Writing Mathematics in LaTeX by Example](https://euclid.colorado.edu/~hilljb/latex/intro.to.latex.pdf) by Jason B. Hill. Thank you for the helpful tutorial.
 
-## Developer
-
-Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/).
+Do you have questions? [Get help](https://datenstrom.se/yellow/help/).

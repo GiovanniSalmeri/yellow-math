@@ -2,7 +2,7 @@
 // Math extension, https://github.com/GiovanniSalmeri/yellow-math
 
 class YellowMath {
-    const VERSION = "0.9.3";
+    const VERSION = "1.0.0";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -59,10 +59,10 @@ class YellowMath {
         $output = null;
         if ($name=="header") {
             $assetLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreAssetLocation");
-            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$assetLocation}math-katex.min.css\" />\n";
-            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$assetLocation}math.css\" />\n";
-            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$assetLocation}math-katex.min.js\"></script>\n";
-            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$assetLocation}math.js\"></script>\n";
+            $output .= "<link rel=\"stylesheet\" media=\"all\" href=\"{$assetLocation}math-katex.min.css\" />\n";
+            $output .= "<link rel=\"stylesheet\" media=\"all\" href=\"{$assetLocation}math.css\" />\n";
+            $output .= "<script defer=\"defer\" src=\"{$assetLocation}math-katex.min.js\"></script>\n";
+            $output .= "<script defer=\"defer\" src=\"{$assetLocation}math.js\"></script>\n";
         }
         return $output;
     }
